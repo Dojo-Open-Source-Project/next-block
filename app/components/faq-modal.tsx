@@ -34,9 +34,13 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
   }, [open]);
 
   return (
-    <div ref={ref} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl opacity-0 px-4" hidden={!open}>
+    <div
+      ref={ref}
+      className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl max-h-screen overflow-auto opacity-0 p-4"
+      hidden={!open}
+    >
       <div className="rounded bg-footer shadow-2xl p-8 md:p-16">
-        <button className="absolute top-3 right-8 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
+        <button className="absolute top-7 right-8 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
         </button>
         <div className="grid grid-cols-1 gap-6 text-left">

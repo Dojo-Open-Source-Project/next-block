@@ -42,7 +42,7 @@ export default function Index() {
 
   return (
     <>
-      <div className="h-full grid grid-cols-1 gap-2 grid-rows-[_100px_1fr_70px_50px] items-center justify-items-center">
+      <div className="min-h-screen grid grid-cols-1 gap-2 grid-rows-[_100px_1fr_70px_50px] items-center justify-items-center">
         <Header />
         <main className="container grid gap-8 grid-cols-1 text-center px-4">
           <h1 className="font-primary text-6xl font-bold">{siteName}</h1>
