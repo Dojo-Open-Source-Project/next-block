@@ -1,0 +1,19 @@
+const path = require('path')
+
+const INTERPRETER = '/absolute/path/to/interpreter' // OR binary name like `node`
+
+module.exports = {
+    apps: [
+        {
+            name: `Fee Estimator`,
+            script: './server.mjs',
+            cwd: path.join(__dirname),
+            interpreter: INTERPRETER,
+            out_file: './output-2024-01-01.log',
+            error_file: './error-2024-01-01.log',
+            stop_exit_codes: 0,
+            listen_timeout: 5000,
+            kill_timeout: 3000,
+        }
+    ]
+}
