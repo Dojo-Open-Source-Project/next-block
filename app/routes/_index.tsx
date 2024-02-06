@@ -1,6 +1,7 @@
 import { MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useEventSource } from "remix-utils/sse/react";
+import { ClientOnly } from "remix-utils/client-only";
 import { useState } from "react";
 import type { Result } from "@samouraiwallet/one-dollar-fee-estimator";
 
@@ -75,7 +76,7 @@ export default function Index() {
         <Links />
         <Footer siteName={siteName} />
       </div>
-      <FAQModal open={modalOpen} handleClose={() => setModalOpen(false)} />
+      <ClientOnly>{() => <FAQModal open={modalOpen} handleClose={() => setModalOpen(false)} />}</ClientOnly>
     </>
   );
 }

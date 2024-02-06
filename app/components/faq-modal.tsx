@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useLayoutEffect, useRef } from "react";
 
 type Props = {
   open: boolean;
@@ -10,7 +10,7 @@ const TRANSITION_MS = 200;
 export const FAQModal: FC<Props> = ({ open, handleClose }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let start: number;
     const element = ref.current;
 
@@ -33,36 +33,80 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
     window.requestAnimationFrame(step);
   }, [open]);
 
+  if (!open) return null;
+
   return (
-    <div
-      ref={ref}
-      className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl max-h-screen overflow-auto opacity-0 p-4"
-      hidden={!open}
-    >
-      <div className="rounded bg-footer shadow-2xl p-8 md:p-16">
-        <button className="absolute top-7 right-8 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
+    <div ref={ref} className="fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center p-8 opacity-0">
+      <div className="rounded bg-footer shadow-2xl p-4 md:p-8 overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full relative">
+        <button className="absolute top-4 right-5 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
         </button>
-        <div className="grid grid-cols-1 gap-6 text-left">
-          <div>
+        <div className="grid grid-cols-1 gap-6 text-left font-thin">
+          <div className="grid grid-cols-1 gap-2">
             <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">How does this work?</h2>
             <p>
-              The $1 Fee Estimator calculates a feerate for a target (50%, 90%, ...) that a transaction needs to have in order to be included in the next block
-              at the moment.
+              The fee estimator asses all the unconfirmed transactions in the mempool, then computes at what miner fee rate a transaction needs to be
+              broadcasted right now for it to be confirmed into the next block.
+            </p>
+            <ul className="list-disc list-inside">
+              <li>
+                <strong>High</strong> = 99% probability your transaction will confirm in the next block
+              </li>
+              <li>
+                <strong>Medium</strong> = 50% probability your transaction will confirm in the next block
+              </li>
+              <li>
+                <strong>Low</strong> = 10% probability your transaction will confirm in the next block
+              </li>
+            </ul>
+          </div>
+          <div className="grid grid-cols-1 gap-2">
+            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">Who is this tool for?</h2>
+            <p>Any individual who has two objectives when broadcasting a transaction:</p>
+            <ul className="list-disc list-inside">
+              <li>
+                <strong>Objective 1:</strong> have your transaction confirmed within a timely manner, ideally within the next block
+              </li>
+              <li>
+                <strong>Objective 2:</strong> reduce the amount of overpaid miner fees
+              </li>
+            </ul>
+          </div>
+          <div className="grid grid-cols-1 gap-2">
+            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">Why is this fee estimator different to others available?</h2>
+            <p>
+              There are many methods which attempt to provide you with a miner fee rate estimation, some of these are integrated into bitcoin wallets, some are
+              standalone applications. To date we have found most to be unreliable particularly during moments of miner fee rate volatility. Any application or
+              tool which tells you &quot;your transaction is expected be confirmed within 4/6/12/24 blocks&quot; is being dishonest as its calculation uses
+              already confirmed blocks to draw this conclusion which is a flawed methodology.
+            </p>
+            <p>
+              By assessing the unconfirmed transactions within the mempool, this tool provides instead an <strong>instant snapshot probability</strong> for
+              being confirmed in the <strong>next block</strong>. Attempting to calculate beyond this (i.e. for your transaction to be confirmed 6 blocks from
+              now) introduces too many variables which would make any calculation mathematically unsound. These variables which can not be accurately accounted
+              for include:
+            </p>
+            <ul className="list-disc list-inside">
+              <li>Block confirmation time variance</li>
+              <li>Unknown state of future mempool</li>
+            </ul>
+          </div>
+          <div className="grid grid-cols-1 gap-2">
+            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">Why is the fee rate the same for two or all three of the percentages?</h2>
+            <p>
+              This is normal and occurs very frequently because at that moment in time unconfirmed transactions in the mempool are weighted around a particular
+              popular miner fee rate. As the weight of miner fee rates in the mempool diverge, in turn so will the calculation for the 10%, 50%, and 99% fee
+              estimator value.
             </p>
           </div>
-          <div>
-            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">So if I pick 99%, my transaction will get confirmed immediately, right?</h2>
+          <div className="grid grid-cols-1 gap-2">
+            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">
+              If I broadcast a transaction with the 99% miner fee rate it will confirm in the next block, right?
+            </h2>
             <p>
-              Bitcoin mempool is very volatile and sometimes there can be huge times between two mined blocks. So no, nothing is absolutely guaranteed, even for
-              99% target.
-            </p>
-          </div>
-          <div>
-            <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">Why is this better than other fee estimators?</h2>
-            <p>
-              The $1 Fee Estimator observes incoming blocks and dynamism of the mempool. Based on our observations, it is very accurate under standard mempool
-              conditions.
+              We would love to say yes, but unfortunately we cannot. 99% is a <strong>snapshot probability</strong> and the mempool state may drastically change
+              between you broadcasting the transaction and the next block being mined. However in our experience with Objective 1 and 2 in mind, our next block
+              fee estimator is far superior than any other available.
             </p>
           </div>
         </div>
