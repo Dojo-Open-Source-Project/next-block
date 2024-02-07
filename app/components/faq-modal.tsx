@@ -36,7 +36,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
   if (!open) return null;
 
   return (
-    <div ref={ref} className="fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center p-8 opacity-0">
+    <div ref={ref} className="fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center py-20 px-8 opacity-0">
       <div className="rounded bg-footer shadow-2xl p-4 md:p-8 overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full relative">
         <button className="absolute top-4 right-5 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
