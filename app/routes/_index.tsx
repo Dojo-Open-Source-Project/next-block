@@ -12,6 +12,19 @@ const siteName = "Fee Estimator";
 const description = "Bitcoin transaction fee estimator to get you to the next block.";
 const image = "https://fees.samouraiwallet.com/og-image.png";
 
+const formatTime = (seconds: number): string => {
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+};
+
+const timeSinceLastBlock = (lastBlockTime: number | undefined): string => {
+  if (!lastBlockTime) return "";
+  const currentTime = Math.floor(Date.now() / 1000);
+
+  const secondsSinceLastBlock = currentTime - lastBlockTime;
+  return formatTime(secondsSinceLastBlock);
+};
+
 export const meta: MetaFunction = () => {
   return [
     { title: siteName },
@@ -50,9 +63,10 @@ export default function Index() {
           <p>What are the feerates that will get your transaction into the next block?</p>
           <div className="font-thin font-primary">
             Last block height:{" "}
-            <a className="font-normal" href={`https://oxt.me/block/${result.lastBlockHeight}`} target="_blank" rel="noreferrer" title="Open on OXT">
-              {result.lastBlockHeight ?? "--"}
-            </a>
+            <a className="font-normal" href={`https://oxt.me/block/${result.lastBlock?.height ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
+              {result.lastBlock?.height ?? "--"}
+            </a>{" "}
+            <span>({timeSinceLastBlock(result.lastBlock?.time)})</span>
           </div>
           <div className="flex justify-center flex-col md:flex-row items-center relative">
             <FeeBox label="Low" target={"0.1"} fees={result.fees} />

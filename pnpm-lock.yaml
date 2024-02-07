@@ -21,8 +21,8 @@ dependencies:
     specifier: ^2.5.1
     version: 2.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   '@samouraiwallet/one-dollar-fee-estimator':
-    specifier: ^0.4.0
-    version: 0.4.0
+    specifier: ^0.5.0
+    version: 0.5.0
   dotenv:
     specifier: ^16.4.1
     version: 16.4.1
@@ -1362,8 +1362,8 @@ packages:
     dev: true
     optional: true
 
-  /@samouraiwallet/one-dollar-fee-estimator@0.4.0:
-    resolution: {integrity: sha512-wvIdQcQXIsFwuVx07k2w1q6a4DUKF+Pxs6mW84Hs1jzBUXedI63tjhIkilOAJWnvIhuw5q+wHym6MEqLYMOgtg==}
+  /@samouraiwallet/one-dollar-fee-estimator@0.5.0:
+    resolution: {integrity: sha512-q7Covv/xk5KyYbkXqnZVuQ/3O4iKAIptYyLiKhBoqZOSnzWmNovXBRovNOSWrpBrpxfWq/yTMU2Wzew1cc2FiQ==}
     engines: {node: '>=16'}
     dev: false
 
