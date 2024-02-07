@@ -66,7 +66,7 @@ export default function Index() {
             <a className="font-normal" href={`https://oxt.me/block/${result.lastBlock?.height ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
               {result.lastBlock?.height ?? "--"}
             </a>{" "}
-            <span>({timeSinceLastBlock(result.lastBlock?.time)})</span>
+            <span title={result.lastBlock?.time ? new Date(result.lastBlock.time).toJSON() : undefined}>({timeSinceLastBlock(result.lastBlock?.time)})</span>
           </div>
           <div className="flex justify-center flex-col md:flex-row items-center relative">
             <FeeBox label="Low" target={"0.1"} fees={result.fees} />
