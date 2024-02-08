@@ -15,7 +15,7 @@ const app = express();
 app.use(express.static("public"));
 
 // Logger
-app.use(morgan("tiny"));
+app.use(morgan(":date[iso] :method :url :status :response-time ms - :res[content-length]"));
 
 // and your app is "just a request handler"
 app.all("*", createRequestHandler({ build }));
