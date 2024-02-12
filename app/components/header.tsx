@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Logo } from "~/logo";
+import { Logo } from "~/components/logo";
 
 export const Header: FC = () => {
   return (

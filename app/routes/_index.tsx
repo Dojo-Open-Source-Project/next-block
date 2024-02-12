@@ -5,7 +5,7 @@ import { ClientOnly } from "remix-utils/client-only";
 import { useState } from "react";
 import type { Result } from "@samouraiwallet/one-dollar-fee-estimator";
 
-import { EstimatorService } from "~/estimator.server";
+import { EstimatorService } from "~/services/estimator.server";
 import { FeeBox, FAQModal, Footer, Header, Links } from "~/components";
 
 const siteName = "Fee Estimator";
@@ -54,6 +54,9 @@ export default function Index() {
   const result = useLoaderEventSource();
   const [modalOpen, setModalOpen] = useState(false);
 
+  const blockHeight = result.lastBlock?.height;
+  const blockTime = result.lastBlock?.time;
+
   return (
     <>
       <div className="min-h-screen grid grid-cols-1 gap-2 grid-rows-[_100px_1fr_70px_50px] items-center justify-items-center">
@@ -63,10 +66,10 @@ export default function Index() {
           <p>What are the feerates that will get your transaction into the next block?</p>
           <div className="font-thin font-primary">
             Last block height:{" "}
-            <a className="font-normal" href={`https://oxt.me/block/${result.lastBlock?.height ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
-              {result.lastBlock?.height ?? "--"}
+            <a className="font-normal" href={`https://oxt.me/block/${blockHeight ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
+              {blockHeight ?? "--"}
             </a>{" "}
-            <span title={result.lastBlock?.time ? new Date(result.lastBlock.time).toJSON() : undefined}>({timeSinceLastBlock(result.lastBlock?.time)})</span>
+            <span title={blockTime ? new Date(blockTime * 1000).toJSON() : undefined}>({timeSinceLastBlock(blockTime)})</span>
           </div>
           <div className="flex justify-center flex-col md:flex-row items-center relative">
             <FeeBox label="Low" target={"0.1"} fees={result.fees} />

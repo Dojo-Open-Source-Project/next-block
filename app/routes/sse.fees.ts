@@ -2,7 +2,7 @@ import { eventStream } from "remix-utils/sse/server";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import type { Result } from "@samouraiwallet/one-dollar-fee-estimator";
 
-import { EstimatorService } from "~/estimator.server";
+import { EstimatorService } from "~/services/estimator.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   return eventStream(request.signal, (send) => {
