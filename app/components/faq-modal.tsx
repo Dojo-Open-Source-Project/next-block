@@ -1,43 +1,20 @@
-import { FC, useLayoutEffect, useRef } from "react";
+import { FC } from "react";
 
 type Props = {
   open: boolean;
   handleClose: () => void;
 };
 
-const TRANSITION_MS = 200;
-
 export const FAQModal: FC<Props> = ({ open, handleClose }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    let start: number;
-    const element = ref.current;
-
-    function step(timestamp: number) {
-      if (start === undefined) {
-        start = timestamp;
-      }
-      const elapsed = timestamp - start;
-
-      // Update the opacity using the elapsed time
-      if (element) {
-        element.style.opacity = String(Math.min(elapsed / TRANSITION_MS, open ? 1 : 0));
-      }
-
-      if (elapsed < TRANSITION_MS) {
-        window.requestAnimationFrame(step);
-      }
-    }
-
-    window.requestAnimationFrame(step);
-  }, [open]);
-
-  if (!open) return null;
-
   return (
-    <div ref={ref} className="fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center py-20 px-8 opacity-0">
-      <div className="rounded bg-footer shadow-2xl p-4 md:p-8 overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full relative">
+    <div
+      className={`fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center py-20 px-8 ${open ? "" : "pointer-events-none"}`}
+    >
+      <div className={`absolute left-0 top-0 w-full h-full transition ${open ? "backdrop-blur-sm" : "backdrop-blur-none"}`} onClick={handleClose} role="none" />
+      <div
+        className={`rounded bg-footer shadow-2xl p-4 md:p-8 overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full relative transition-opacity ${open ? "opacity-100" : "opacity-0"}`}
+        role="dialog"
+      >
         <button className="absolute top-4 right-5 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
         </button>
@@ -45,7 +22,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
           <div className="grid grid-cols-1 gap-2">
             <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">How does this work?</h2>
             <p>
-              The fee estimator asses all the unconfirmed transactions in the mempool, then computes at what miner fee rate a transaction needs to be
+              The fee estimator assesses all the unconfirmed transactions in the mempool, then computes at what miner fee rate a transaction needs to be
               broadcasted right now for it to be confirmed into the next block.
             </p>
             <ul className="list-disc list-inside">

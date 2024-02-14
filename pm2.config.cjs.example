@@ -1,14 +1,19 @@
 const path = require('path')
 
+const NAMESPACE = "estimator"
 const INTERPRETER = '/absolute/path/to/interpreter' // OR binary name like `node`
 
 module.exports = {
     apps: [
         {
             name: `Fee Estimator`,
+            namespace: NAMESPACE,
             script: './server.mjs',
             cwd: path.join(__dirname),
             interpreter: INTERPRETER,
+            env: {
+                PORT: 8190,
+            },
             out_file: './output-2024-01-01.log',
             error_file: './error-2024-01-01.log',
             stop_exit_codes: 0,

@@ -2,11 +2,8 @@ import { broadcastDevReady } from "@remix-run/node";
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
 import morgan from "morgan";
-import { configDotenv } from "dotenv";
 
-const config = configDotenv();
-
-const PORT = Number(config.parsed.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // notice that the result of `remix build` is "just a module"
 import * as build from "./build/index.js";

@@ -1,16 +1,16 @@
 import { MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useEventSource } from "remix-utils/sse/react";
-import { ClientOnly } from "remix-utils/client-only";
 import { useState } from "react";
 import type { Result } from "@samouraiwallet/one-dollar-fee-estimator";
 
 import { EstimatorService } from "~/services/estimator.server";
 import { FeeBox, FAQModal, Footer, Header, Links } from "~/components";
+import { serverConfig } from "~/config/config.server";
 
 const siteName = "Fee Estimator";
 const description = "Bitcoin transaction fee estimator to get you to the next block.";
-const image = "https://fees.samouraiwallet.com/og-image.png";
+const image = "/og-image.png";
 
 const formatTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / 60);
@@ -25,29 +25,48 @@ const timeSinceLastBlock = (lastBlockTime: number | undefined): string => {
   return formatTime(secondsSinceLastBlock);
 };
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { hostname } = data!;
+  const baseUrl = `https://${hostname}`;
+  const imageUrl = baseUrl + image;
+
   return [
     { title: siteName },
     { name: "description", content: description },
     { property: "og:title", content: siteName },
     { property: "og:description", content: description },
-    { property: "og:image", content: image },
+    { property: "og:image", content: imageUrl },
+    { property: "og:url", content: baseUrl },
+    { name: "twitter:creator", content: "@samouraiwallet" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: siteName },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: image },
+    { name: "twitter:image", content: imageUrl },
     { name: "robots", content: "index, follow" },
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        url: baseUrl,
+        name: siteName,
+        description: description,
+        image: imageUrl,
+      },
+    },
   ];
 };
 
 export const loader = () => {
-  return EstimatorService.data;
+  return {
+    hostname: serverConfig.HOSTNAME,
+    estimatorData: EstimatorService.data,
+  };
 };
 
 const useLoaderEventSource = () => {
-  const loaderResult = useLoaderData<typeof loader>();
+  const { estimatorData } = useLoaderData<typeof loader>();
   const sseResultStr = useEventSource("/sse/fees", { event: "fees" });
-  return sseResultStr ? (JSON.parse(sseResultStr) as Result) : loaderResult;
+  return sseResultStr ? (JSON.parse(sseResultStr) as Result) : estimatorData;
 };
 
 export default function Index() {
@@ -93,7 +112,7 @@ export default function Index() {
         <Links />
         <Footer siteName={siteName} />
       </div>
-      <ClientOnly>{() => <FAQModal open={modalOpen} handleClose={() => setModalOpen(false)} />}</ClientOnly>
+      <FAQModal open={modalOpen} handleClose={() => setModalOpen(false)} />
     </>
   );
 }
