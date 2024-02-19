@@ -8,7 +8,7 @@ import { EstimatorService } from "~/services/estimator.server";
 import { FeeBox, FAQModal, Footer, Header, Links } from "~/components";
 import { serverConfig } from "~/config/config.server";
 
-const siteName = "Fee Estimator";
+const siteName = "Next Block";
 const description = "Bitcoin transaction fee estimator to get you to the next block.";
 const image = "/og-image.png";
 

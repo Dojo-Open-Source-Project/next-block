@@ -1,6 +1,6 @@
 {
-  "name": "Fee Estimator",
-  "short_name": "Fee Estimator",
+  "name": "Next Block",
+  "short_name": "Next Block",
   "description": "Bitcoin transaction fee estimator to get you to the next block.",
   "start_url": "/",
   "icons": [

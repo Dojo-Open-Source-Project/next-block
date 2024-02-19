@@ -22,7 +22,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
           <div className="grid grid-cols-1 gap-2">
             <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">How does this work?</h2>
             <p>
-              The fee estimator assesses all the unconfirmed transactions in the mempool, then computes at what miner fee rate a transaction needs to be
+              The Next Block estimator assesses all the unconfirmed transactions in the mempool, then computes at what miner fee rate a transaction needs to be
               broadcasted right now for it to be confirmed into the next block.
             </p>
             <ul className="list-disc list-inside">
@@ -36,6 +36,13 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
                 <strong>Low</strong> = 10% probability your transaction will confirm in the next block
               </li>
             </ul>
+            <p>
+              If you want a detailed explanation, read{" "}
+              <a href="https://code.samourai.io/oxt/one_dollar_fee_estimator/-/blob/master/README.md" target="_blank" rel="noreferrer">
+                the original Readme
+              </a>
+              .
+            </p>
           </div>
           <div className="grid grid-cols-1 gap-2">
             <h2 className="font-primary font-bold text-xl text-gray-300 mb-2">Who is this tool for?</h2>

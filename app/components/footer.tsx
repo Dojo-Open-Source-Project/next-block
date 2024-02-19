@@ -15,7 +15,7 @@ export const Footer: FC<Props> = ({ siteName }) => {
         </div>
         <div>
           Povered by{" "}
-          <a href="https://code.samourai.io/dojo/one-dollar-fee-estimator-js" target="_blank" rel="noreferrer">
+          <a href="https://code.samourai.io/dojo/one-dollar-fee-estimator-js/-/tree/master/packages/estimator" target="_blank" rel="noreferrer">
             $1 Fee Estimator
           </a>
         </div>
