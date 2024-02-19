@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply min-h-full;
+  }
+
+  body {
+    @apply bg-background text-white min-h-screen;
+    background: radial-gradient(circle at top right, #3c1e26 0%, #18181b 15%);
+  }
+
+  footer {
+    @apply bg-footer;
+  }
+
+  a {
+    @apply text-secondary hover:underline cursor-pointer;
+  }
+}
+
+@layer components {
+  .fee-box {
+    @apply grid grid-cols-1 items-center justify-items-center py-2 mb-2 w-40 mx-4 font-medium rounded-md bg-primary border border-gray-800 shadow-lg shadow-primary/40 hover:shadow-primary/40 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Next Block",
+  "short_name": "Next Block",
+  "description": "Bitcoin transaction fee estimator to get you to the next block.",
+  "start_url": "/",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#18181b",
+  "background_color": "#18181b",
+  "display": "standalone"
+}
