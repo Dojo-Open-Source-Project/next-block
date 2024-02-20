@@ -17,11 +17,11 @@
   "dependencies": {
     "@fontsource-variable/raleway": "^5.0.17",
     "@fontsource-variable/roboto-flex": "^5.0.8",
-    "@remix-run/express": "^2.6.0",
-    "@remix-run/node": "^2.6.0",
-    "@remix-run/react": "^2.6.0",
-    "@samouraiwallet/one-dollar-fee-estimator": "^0.5.0",
-    "dotenv": "^16.4.4",
+    "@remix-run/express": "^2.7.2",
+    "@remix-run/node": "^2.7.2",
+    "@remix-run/react": "^2.7.2",
+    "@samouraiwallet/one-dollar-fee-estimator": "^0.6.0",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "isbot": "^5.1.0",
     "morgan": "^1.10.0",
@@ -30,7 +30,7 @@
     "remix-utils": "^7.5.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.6.0",
+    "@remix-run/dev": "^2.7.2",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
