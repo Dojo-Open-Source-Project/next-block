@@ -7,11 +7,11 @@
   "author": "Katana Cryptographic Ltd.",
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev -c \"node server.mjs --trace-warnings\"",
+    "build": "remix vite:build",
+    "dev": "node ./server.mjs",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "pretty": "prettier ./app tailwind.config.ts remix.config.js server.mjs -w",
-    "start": "node server.mjs",
+    "pretty": "prettier ./app tailwind.config.ts vite.config.ts server.mjs -w",
+    "start": "NODE_ENV=production node ./server.mjs",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -44,7 +44,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "engines": {
     "node": ">=18.0.0"

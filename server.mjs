@@ -1,25 +1,60 @@
-import { broadcastDevReady } from "@remix-run/node";
 import { createRequestHandler } from "@remix-run/express";
+import { installGlobals } from "@remix-run/node";
 import express from "express";
 import morgan from "morgan";
 
+installGlobals();
+
 const PORT = Number(process.env.PORT) || 3000;
 
-// notice that the result of `remix build` is "just a module"
-import * as build from "./build/index.js";
+const viteDevServer =
+  process.env.NODE_ENV === "production"
+    ? undefined
+    : await import("vite").then((vite) =>
+        vite.createServer({
+          server: { middlewareMode: true },
+        }),
+      );
 
 const app = express();
-app.use(express.static("public"));
+
+// handle asset requests
+if (viteDevServer) {
+  app.use(viteDevServer.middlewares);
+} else {
+  app.use(
+    "/assets",
+    express.static("build/client/assets", {
+      immutable: true,
+      maxAge: "1y",
+    }),
+  );
+}
+
+app.use(express.static("build/client", { maxAge: "1h" }));
 
 // Logger
 app.use(morgan(":method :url :status :response-time ms"));
 
-// and your app is "just a request handler"
-app.all("*", createRequestHandler({ build }));
+// handle SSR requests
+app.all(
+  "*",
+  createRequestHandler({
+    build: viteDevServer ? () => viteDevServer.ssrLoadModule("virtual:remix/server-build") : await import("./build/server/index.js"),
+  }),
+);
 
-app.listen(PORT, () => {
-  if (process.env.NODE_ENV === "development") {
-    broadcastDevReady(build);
-  }
+const server = app.listen(PORT, () => {
+  process.send && process.send("ready");
   console.log(`App listening on http://localhost:${PORT}`);
+});
+
+process.on("SIGINT", () => {
+  server.close();
+  process.exit(0);
+});
+
+process.on("SIGTERM", () => {
+  server.close();
+  process.exit(0);
 });
