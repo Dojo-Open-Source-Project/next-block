@@ -1,27 +1,27 @@
 {
   "name": "fee-estimator-website",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "author": "Katana Cryptographic Ltd.",
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev -c \"node server.mjs --trace-warnings\"",
+    "build": "remix vite:build",
+    "dev": "node ./server.mjs",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "pretty": "prettier ./app tailwind.config.ts remix.config.js server.mjs -w",
-    "start": "node server.mjs",
+    "pretty": "prettier ./app tailwind.config.ts vite.config.ts server.mjs -w",
+    "start": "NODE_ENV=production node ./server.mjs",
     "typecheck": "tsc"
   },
   "dependencies": {
     "@fontsource-variable/raleway": "^5.0.17",
     "@fontsource-variable/roboto-flex": "^5.0.8",
-    "@remix-run/express": "^2.6.0",
-    "@remix-run/node": "^2.6.0",
-    "@remix-run/react": "^2.6.0",
-    "@samouraiwallet/one-dollar-fee-estimator": "^0.5.0",
-    "dotenv": "^16.4.4",
+    "@remix-run/express": "^2.7.2",
+    "@remix-run/node": "^2.7.2",
+    "@remix-run/react": "^2.7.2",
+    "@samouraiwallet/one-dollar-fee-estimator": "^0.6.0",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "isbot": "^5.1.0",
     "morgan": "^1.10.0",
@@ -30,7 +30,7 @@
     "remix-utils": "^7.5.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.6.0",
+    "@remix-run/dev": "^2.7.2",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
@@ -44,7 +44,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "engines": {
     "node": ">=18.0.0"

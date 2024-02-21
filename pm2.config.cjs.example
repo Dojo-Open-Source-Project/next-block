@@ -12,6 +12,7 @@ module.exports = {
             cwd: path.join(__dirname),
             interpreter: INTERPRETER,
             env: {
+                NODE_ENV:production,
                 PORT: 8080,
             },
             out_file: './output-2024-01-01.log',

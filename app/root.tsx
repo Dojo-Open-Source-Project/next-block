@@ -1,10 +1,10 @@
 import type { LinksFunction } from "@remix-run/node";
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
-import raleway from "@fontsource-variable/raleway/index.css";
-import robotoFlex from "@fontsource-variable/roboto-flex/index.css";
+import raleway from "@fontsource-variable/raleway/index.css?url";
+import robotoFlex from "@fontsource-variable/roboto-flex/index.css?url";
 
-import styles from "./tailwind.css";
+import styles from "./tailwind.css?url";
 
 export const links: LinksFunction = () => [
   { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
@@ -29,7 +29,6 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
