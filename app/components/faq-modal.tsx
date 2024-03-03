@@ -49,7 +49,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
             <p>Any individual who has two objectives when broadcasting a transaction:</p>
             <ul className="list-disc list-inside">
               <li>
-                <strong>Objective 1:</strong> have your transaction confirmed within a timely manner, ideally within the next block
+                <strong>Objective 1:</strong> have your transaction confirmed in a timely manner, ideally in the next block
               </li>
               <li>
                 <strong>Objective 2:</strong> reduce the amount of overpaid miner fees
@@ -61,7 +61,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
             <p>
               There are many methods which attempt to provide you with a miner fee rate estimation, some of these are integrated into bitcoin wallets, some are
               standalone applications. To date we have found most to be unreliable particularly during moments of miner fee rate volatility. Any application or
-              tool which tells you &quot;your transaction is expected be confirmed within 4/6/12/24 blocks&quot; is being dishonest as its calculation uses
+              tool which tells you &quot;your transaction is expected to be confirmed within 4/6/12/24 blocks&quot; is being dishonest as its calculation uses
               already confirmed blocks to draw this conclusion which is a flawed methodology.
             </p>
             <p>
@@ -90,7 +90,7 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
             <p>
               We would love to say yes, but unfortunately we cannot. 99% is a <strong>snapshot probability</strong> and the mempool state may drastically change
               between you broadcasting the transaction and the next block being mined. However in our experience with Objective 1 and 2 in mind, our next block
-              fee estimator is far superior than any other available.
+              fee estimator is far superior than others.
             </p>
           </div>
         </div>
