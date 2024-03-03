@@ -82,7 +82,7 @@ export default function Index() {
         <Header />
         <main className="container grid gap-8 grid-cols-1 text-center px-4">
           <h1 className="font-primary text-6xl font-bold">{siteName}</h1>
-          <p>What are the feerates that will get your transaction into the next block?</p>
+          <p>What miner fee rate will get your transaction confirmed into the next block?</p>
           <div className="font-thin font-primary">
             Last block height:{" "}
             <a className="font-normal" href={`https://oxt.me/block/${blockHeight ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
