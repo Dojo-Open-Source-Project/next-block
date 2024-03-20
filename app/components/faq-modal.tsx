@@ -1,20 +1,13 @@
-import { FC } from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
 type Props = {
-  open: boolean;
   handleClose: () => void;
 };
 
-export const FAQModal: FC<Props> = ({ open, handleClose }) => {
+const Modal: ForwardRefRenderFunction<HTMLDialogElement | null, Props> = ({ handleClose }, ref) => {
   return (
-    <div
-      className={`fixed left-0 top-0 w-full h-full max-h-screen max-w-screen flex items-center justify-center py-20 px-8 ${open ? "" : "pointer-events-none"}`}
-    >
-      <div className={`absolute left-0 top-0 w-full h-full transition ${open ? "backdrop-blur-sm" : "backdrop-blur-none"}`} onClick={handleClose} role="none" />
-      <div
-        className={`rounded bg-footer shadow-2xl p-4 md:p-8 overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full relative transition-opacity ${open ? "opacity-100" : "opacity-0"}`}
-        role="dialog"
-      >
+    <dialog ref={ref}>
+      <div className="p-4 md:p-8">
         <button className="absolute top-4 right-5 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
         </button>
@@ -95,6 +88,8 @@ export const FAQModal: FC<Props> = ({ open, handleClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 };
+
+export const FAQModal = forwardRef<HTMLDialogElement | null, Props>(Modal);

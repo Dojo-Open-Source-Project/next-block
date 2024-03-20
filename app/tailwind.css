@@ -25,4 +25,34 @@
   .fee-box {
     @apply grid grid-cols-1 items-center justify-items-center py-2 mb-2 w-40 mx-4 font-medium rounded-md bg-primary border border-gray-800 shadow-lg shadow-primary/40 hover:shadow-primary/40 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition;
   }
+
+  dialog {
+    @apply rounded bg-footer shadow-2xl overflow-auto mx-auto my-auto max-w-4xl w-full max-h-full text-white;
+    transition: all 0.2s allow-discrete;
+  }
+
+  dialog[open] {
+    @apply opacity-100;
+  }
+
+  @starting-style {
+    dialog[open] {
+      @apply opacity-0;
+    }
+  }
+
+  dialog::backdrop {
+    @apply backdrop-blur-none;
+    transition: all 0.2s allow-discrete;
+  }
+
+  dialog[open]::backdrop {
+    @apply backdrop-blur-sm;
+  }
+
+  @starting-style {
+    dialog[open]::backdrop {
+      @apply backdrop-blur-none;
+    }
+  }
 }
