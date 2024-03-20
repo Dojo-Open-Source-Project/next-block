@@ -2,7 +2,7 @@ import { FeeEstimator } from "@samouraiwallet/one-dollar-fee-estimator";
 
 import { serverConfig } from "~/config/config.server";
 
-export const EstimatorService = new FeeEstimator({
+const EstimatorService = new FeeEstimator({
   refresh: 20,
   useWorker: true,
   rpcOptions: {
@@ -12,3 +12,7 @@ export const EstimatorService = new FeeEstimator({
     port: serverConfig.BITCOIND_PORT,
   },
 });
+
+EstimatorService.setMaxListeners(1000);
+
+export { EstimatorService };
