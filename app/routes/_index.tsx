@@ -1,7 +1,7 @@
 import { MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useEventSource } from "remix-utils/sse/react";
-import { useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import type { Result } from "@samouraiwallet/one-dollar-fee-estimator";
 
 import { EstimatorService } from "~/services/estimator.server";
@@ -71,7 +71,27 @@ const useLoaderEventSource = () => {
 
 export default function Index() {
   const result = useLoaderEventSource();
-  const [modalOpen, setModalOpen] = useState(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      if (event.target === modalRef.current) {
+        modalRef.current?.close("cancelled");
+      }
+    };
+
+    modalRef.current?.addEventListener("click", handler);
+
+    return () => modalRef.current?.removeEventListener("click", handler);
+  }, []);
+
+  const openModal = useCallback(() => {
+    modalRef.current?.showModal();
+  }, []);
+
+  const closeModal = useCallback(() => {
+    modalRef.current?.close();
+  }, []);
 
   const blockHeight = result.lastBlock?.height;
   const blockTime = result.lastBlock?.time;
@@ -103,7 +123,7 @@ export default function Index() {
           <div className="mt-12">
             <button
               className="px-6 py-1 border border-secondary rounded bg-footer hover:text-gray-300 transition-colors font-primary font-bold shadow"
-              onClick={() => setModalOpen(true)}
+              onClick={openModal}
             >
               How does this work?
             </button>
@@ -112,7 +132,7 @@ export default function Index() {
         <Links />
         <Footer siteName={siteName} />
       </div>
-      <FAQModal open={modalOpen} handleClose={() => setModalOpen(false)} />
+      <FAQModal handleClose={closeModal} ref={modalRef} />
     </>
   );
 }
