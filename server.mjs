@@ -19,7 +19,7 @@ const viteDevServer =
 const app = express();
 
 // Disabling X-Powered-By
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 
 // handle asset requests
 if (viteDevServer) {
