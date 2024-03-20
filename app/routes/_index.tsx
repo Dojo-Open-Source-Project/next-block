@@ -74,15 +74,16 @@ export default function Index() {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+    const currentRef = modalRef.current;
     const handler = (event: MouseEvent) => {
       if (event.target === modalRef.current) {
-        modalRef.current?.close("cancelled");
+        currentRef?.close("cancelled");
       }
     };
 
-    modalRef.current?.addEventListener("click", handler);
+    currentRef?.addEventListener("click", handler);
 
-    return () => modalRef.current?.removeEventListener("click", handler);
+    return () => currentRef?.removeEventListener("click", handler);
   }, []);
 
   const openModal = useCallback(() => {

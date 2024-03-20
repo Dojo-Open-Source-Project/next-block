@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
 type Props = {
   handleClose: () => void;
 };
 
-export const FAQModal = forwardRef<HTMLDialogElement | null, Props>(({ handleClose }, ref) => {
+const Modal: ForwardRefRenderFunction<HTMLDialogElement | null, Props> = ({ handleClose }, ref) => {
   return (
     <dialog ref={ref}>
       <div className="p-4 md:p-8">
@@ -90,4 +90,6 @@ export const FAQModal = forwardRef<HTMLDialogElement | null, Props>(({ handleClo
       </div>
     </dialog>
   );
-});
+};
+
+export const FAQModal = forwardRef<HTMLDialogElement | null, Props>(Modal);
