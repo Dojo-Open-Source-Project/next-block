@@ -6,7 +6,7 @@ type Props = {
 
 const Modal: ForwardRefRenderFunction<HTMLDialogElement | null, Props> = ({ handleClose }, ref) => {
   return (
-    <dialog ref={ref}>
+    <dialog ref={ref} className="max-h-[80%]">
       <div className="p-4 md:p-8">
         <button className="absolute top-4 right-5 font-primary font-bold text-xl cursor-pointer hover:text-secondary transition-colors" onClick={handleClose}>
           &#x2715;
@@ -31,7 +31,7 @@ const Modal: ForwardRefRenderFunction<HTMLDialogElement | null, Props> = ({ hand
             </ul>
             <p>
               If you want a detailed explanation, read{" "}
-              <a href="https://code.samourai.io/oxt/one_dollar_fee_estimator/-/blob/master/README.md" target="_blank" rel="noreferrer">
+              <a href="https://github.com/Archive-Samourai-Wallet/one_dollar_fee_estimator" target="_blank" rel="noreferrer">
                 the original Readme
               </a>
               .

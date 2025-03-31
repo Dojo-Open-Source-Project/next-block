@@ -106,7 +106,13 @@ export default function Index() {
           <p>What fee rate will get your transaction confirmed into the next block?</p>
           <div className="font-thin font-primary">
             Last block height:{" "}
-            <a className="font-normal" href={`https://oxt.me/block/${blockHeight ?? "0"}`} target="_blank" rel="noreferrer" title="Open on OXT">
+            <a
+              className="font-normal"
+              href={`https://bitcoinexplorer.org/block-height/${blockHeight ?? "0"}`}
+              target="_blank"
+              rel="noreferrer"
+              title="Open on OXT"
+            >
               {blockHeight ?? "--"}
             </a>{" "}
             <span title={blockTime ? new Date(blockTime * 1000).toJSON() : undefined}>({timeSinceLastBlock(blockTime)})</span>

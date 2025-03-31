@@ -10,6 +10,7 @@ const EstimatorService = new FeeEstimator({
     password: serverConfig.BITCOIND_PASSWORD,
     host: serverConfig.BITCOIND_HOST,
     port: serverConfig.BITCOIND_PORT,
+    protocol: "http",
   },
 });
 
