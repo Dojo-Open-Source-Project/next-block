@@ -25,6 +25,10 @@ export const Links: FC = () => {
 			|{" "}
 			<a href="https://paynym.rs" target="_blank" rel="noreferrer">
 				Paynym.rs
+			</a>{" "}
+			|{" "}
+			<a href="https://ashigaru.rs" target="_blank" rel="noreferrer">
+				Ashigaru
 			</a>
 		</div>
 	);
