@@ -21,4 +21,4 @@ export const serverConfig = {
 	BITCOIND_PASSWORD: config.parsed.BITCOIND_PASSWORD,
 	BITCOIND_HOST: config.parsed.BITCOIND_HOST,
 	BITCOIND_PORT: Number(config.parsed.BITCOIND_PORT),
-};
+} as const;
