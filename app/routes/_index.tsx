@@ -113,10 +113,10 @@ export default function Index() {
 						Last block height:{" "}
 						<a
 							className="font-normal"
-							href={`https://bitcoinexplorer.org/block-height/${blockHeight ?? "0"}`}
+							href={`https://bithypha.com/block/${blockHeight ?? "0"}`}
 							target="_blank"
 							rel="noreferrer"
-							title="Open on OXT"
+							title="Open on Bithypha"
 						>
 							{blockHeight ?? "--"}
 						</a>{" "}
