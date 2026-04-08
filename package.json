@@ -1,46 +1,46 @@
 {
-  "name": "fee-estimator-website",
-  "version": "1.5.0",
-  "private": true,
-  "sideEffects": false,
-  "type": "module",
-  "author": "Katana Cryptographic Ltd.",
-  "license": "AGPL-3.0",
-  "scripts": {
-    "build": "remix vite:build",
-    "dev": "node ./server.mjs",
-    "format": "biome format --write app/",
-    "lint": "biome lint app/",
-    "lint:fix": "biome lint --write app/",
-    "start": "NODE_ENV=production node ./server.mjs",
-    "typecheck": "tsc"
-  },
-  "dependencies": {
-    "@fontsource-variable/raleway": "^5.2.8",
-    "@fontsource-variable/roboto-flex": "^5.2.8",
-    "@remix-run/express": "^2.17.4",
-    "@remix-run/node": "^2.17.4",
-    "@remix-run/react": "^2.17.4",
-    "@samouraiwallet/one-dollar-fee-estimator": "^0.9.0",
-    "dotenv": "^16.6.1",
-    "express": "^4.22.1",
-    "isbot": "^5.1.37",
-    "morgan": "^1.10.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remix-utils": "^7.5.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@remix-run/dev": "^2.17.4",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^5.9.3",
-    "vite": "^5.4.21",
-    "vite-tsconfig-paths": "^4.3.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+	"name": "fee-estimator-website",
+	"version": "1.6.0",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"author": "Katana Cryptographic Ltd.",
+	"license": "AGPL-3.0",
+	"scripts": {
+		"build": "remix vite:build",
+		"dev": "node ./server.mjs",
+		"format": "biome format --write app/",
+		"lint": "biome lint app/",
+		"lint:fix": "biome lint --write app/",
+		"start": "NODE_ENV=production node ./server.mjs",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@fontsource-variable/raleway": "^5.2.8",
+		"@fontsource-variable/roboto-flex": "^5.2.8",
+		"@remix-run/express": "^2.17.4",
+		"@remix-run/node": "^2.17.4",
+		"@remix-run/react": "^2.17.4",
+		"@samouraiwallet/one-dollar-fee-estimator": "^0.9.0",
+		"dotenv": "^16.6.1",
+		"express": "^4.22.1",
+		"isbot": "^5.1.37",
+		"morgan": "^1.10.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"remix-utils": "^7.5.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@remix-run/dev": "^2.17.4",
+		"@types/react": "^18.3.28",
+		"@types/react-dom": "^18.3.7",
+		"tailwindcss": "^3.4.19",
+		"typescript": "^5.9.3",
+		"vite": "^5.4.21",
+		"vite-tsconfig-paths": "^4.3.2"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
 }
